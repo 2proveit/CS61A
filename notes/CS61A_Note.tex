@@ -1,25 +1,26 @@
 \documentclass{article}
-\usepackage{ctex}
+
 \usepackage{graphicx}
 \title{CS61A Learning Note}
-\author{Seinloong Lee}
+\author{Seinloong Lee\thanks{written in \LaTeX}}
 \date{2022.9.28}
 
 
 
 \begin{document}
+
+\begin{figure}
+\centering
+\includegraphics[trim=15 0 5 0,clip=noclip,scale=0.1]{cs61a}
+\end{figure}
 \maketitle
 \begin{center}
-
-
-
-
 \textbf{in memory of my CS61A learning time}
 \end{center}
 
 \newpage
-\section{Lecture 0: Set up}
-python installing and windowspowershell using
+\section{Lecture 1: Set up}
+python installing and  windowspowershell using
 \par
 
 \newpage
@@ -37,7 +38,7 @@ so they evaluate to values
 \par
 eg:nul(add(2,mul(4,6)),add(3,5))
 \par
-\subsection{Name, Assignmentt, and User=Defined Functions}
+\subsection{Name, Assignment, and User=Defined Functions}
 >>>from math import pi \par
 >>>pi\par
 >>>from math import sin\par
@@ -45,6 +46,49 @@ eg:nul(add(2,mul(4,6)),add(3,5))
 >>>radius\par
 >>>2*radius\par
 >>>area, circ = pi*radius*radius, 2*pi*radius\par
+\subsection{Environment Diagrams}
+Environment diagrams visualize the interpreter's process.\par
+\subsection{Defining Functions}
+Assigning is a simple means of abstrsction:binds means to values\par
+Functoin definition is a more powerful means of abstraction : binds names to \emph{expression.}\par
+def <name> (<format parameters>):\par
+	return <return expressions>\par
+	
+\subsection{Calling User-Defined Functions}
+Procedure for calling/applying user=defined functions(version 1):\par
+1.Add a local frame, forming a \emph{new} environment. \par
+2.Bind the function's formal parameters to its arguments in that frame.\par
+3.Execute the body of the function in that new environment.\par
+\subsection{Looking Up Names In environments}
+Every expression is evaluated in the context of an environment.\par
+So far, the current environment is either:\par
+. The global frame alone,or\par
+. A local frame, followed by the global frame.\par
+\emph{Most impor two things I'll say all day:}\par
+An environment is a sequence of frames.\par
+
+A name evaluates to the value bound to that name in the earliest frame of the current environment in which that name is found.\par
+\newpage
+\section{Control}
+\subsection{Print and None}
+>>>print(-2)\par 
+>>>None \par 
+\subsection{None Indicates that Nothing has been returned}
+The special value None represents nothing in Python.\par 
+A function that does not explicitly return a value will return None.\par 
+\emph{Careful:}None is not displayed by the interpreter as the value of an expression.\par 
+\subsection{Pure Functions and Non-Pure functions}
+Pure Functions return values\par 
+Non-Pure Functions has side effects.\par 
+A side effect isn't a value;it's anything that happens as a consequence of calling a function.\par 
+\subsection{Nested Expression with Print}
+\emph{the "return" function always returns a "None".}\par 
+\subsection{Multiple environment}
+Def statement: name parameters \par 
+\emph{a new function is created! Name bound to that function in that current frame.}\par 
+Call expression:
+
+
 
 
 \end{document}
