@@ -216,7 +216,14 @@ def is_always_roll(strategy, goal=GOAL):
     """
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
-    if strategy()
+    previous = strategy(0,0)
+
+    for i in range(100):
+        for j in range(100):
+            if strategy(i,j) != previous:
+                return False
+    return True
+
     # END PROBLEM 7
 
 
@@ -255,12 +262,18 @@ def max_scoring_num_rolls(dice=six_sided, total_samples=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
-    temp = 0
-    flag = 0
-    for i in range(total_samples):
-        if temp < make_averaged(dice,total_samples)():
-            flag = i   
-    return flag 
+    max_number = 1
+    max_score_average = 0
+    account = 1
+    while account <= 10:
+        averaged_dice = make_averaged(roll_dice,total_samples)
+        score_average = averaged_dice(account,dice)
+        if score_average > max_score_average:
+            max_score_average = score_average
+            max_number = account
+        account += 1
+    
+    return max_number
     # END PROBLEM 9
 
 
@@ -304,7 +317,7 @@ def tail_strategy(score, opponent_score, threshold=12, num_rolls=6):
     points, and returns NUM_ROLLS otherwise. Ignore score and Square Swine.
     """
     # BEGIN PROBLEM 10
-    if tail_points(opponent_score)>=threshold:
+    if tail_points(opponent_score) >= threshold:
         return 0
     else:
         return num_rolls
@@ -315,10 +328,15 @@ def tail_strategy(score, opponent_score, threshold=12, num_rolls=6):
 def square_strategy(score, opponent_score, threshold=12, num_rolls=6):
     """This strategy returns 0 dice when your score would increase by at least threshold."""
     # BEGIN PROBLEM 11
-    if score >= threshold:
+    # update when updates 0 dice
+    
+    curr_score = square_update(0, score, opponent_score)
+    
+    if curr_score - score >= threshold:
         return 0
     else:
         return num_rolls
+    #tail_strategy(score, opponent_score,threshold,num_rolls)
     # Remove this line once implemented.
     # END PROBLEM 11
 
@@ -329,10 +347,8 @@ def final_strategy(score, opponent_score):
     *** YOUR DESCRIPTION HERE ***
     """
     # BEGIN PROBLEM 12
-    if max(score-opponent_score,opponent_score-score) == 12:
-        return 0
-    else:
-        return 6
+    
+    return 6
         
 # Remove this line once implemented.
     # END PROBLEM 12
